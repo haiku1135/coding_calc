@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      text-align: center;
+      margin-top: 20px;
+    }
+    #container {
+      display: inline-block;
+      background-color: cadetblue;
+      padding: 5px;
+    }
+    #result {
+      height: 120px;
+      border: solid 1px rgb(88,88,88);
+      background-color: #e1dfdf;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+    }
+    table {
+      table-layout: fixed;
+    }
+    td {
+      width: 100px;
+      height: 100px;
+    }
+    button {
+      width: 100%;
+      height: 100%;
+      border: solid 1px rgb(88,88,88);
+      background-color: white;
+      cursor: pointer;
+    }
+    button:active {
+      background-color: #e4e4e4;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="result"></div>
+    <table>
+      <tbody>
+        <tr>
+          <td><button>+</button></td>
+          <td><button>-</button></td>
+          <td><button>*</button></td>
+          <td><button>/</button></td>
+        </tr>
+        <tr>
+          <td><button>1</button></td>
+          <td><button>2</button></td>
+          <td><button>3</button></td>
+          <td><button>C</button></td>
+        </tr>
+        <tr>
+          <td><button>4</button></td>
+          <td><button>5</button></td>
+          <td><button>6</button></td>
+          <td><button>=</button></td>
+        </tr>
+        <tr>
+          <td><button>7</button></td>
+          <td><button>8</button></td>
+          <td><button>9</button></td>
+          <td><button>0</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    const buttons = document.querySelectorAll('button');
+    const result = document.querySelector('#result');
+
+    let concatText = '';
+    function buttonPressed(event) {
+
+      const text = event.target.textContent;
+      // alert(text);
+      if(text === "="){
+        concatText = eval(concatText);
+      }else if(text === "C"){
+        concatText = '';
+      } else {
+        concatText += text;
+      }
+      result.textContent = concatText;
+    }
+    buttons.forEach(button => button.addEventListener('click', buttonPressed))
+  </script>
+</body>
+</html>
